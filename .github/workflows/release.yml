@@ -6,30 +6,40 @@ on:
   push:
     tags: ['v*']
 
+# Only this job may write (to create the release); nothing else in the repo uses write access.
 permissions:
   contents: write
 
 jobs:
   release:
     runs-on: windows-latest
+    env:
+      # Passed through the environment rather than pasted into scripts, so a tag name can't inject code.
+      TAG: ${{ github.ref_name }}
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-dotnet@v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6
         with:
           dotnet-version: 8.0.x
 
       - name: Check the tag matches the version
         shell: pwsh
         run: |
-          $tag = '${{ github.ref_name }}'.TrimStart('v')
+          if ($env:TAG -notmatch '^v\d+\.\d+\.\d+$') { throw "Tag '$env:TAG' isn't of the form v1.2.3." }
+          $tag = $env:TAG.TrimStart('v')
           $manifest = (Select-String -Path src/VrModTagger/extension.yaml -Pattern '^Version:\s*(.+)$').Matches[0].Groups[1].Value.Trim()
           $project = ([xml](Get-Content src/VrModTagger/VrModTagger.csproj)).Project.PropertyGroup.Version | Where-Object { $_ } | Select-Object -First 1
           if ($tag -ne $manifest -or $tag -ne $project) {
             throw "Tag $tag, extension.yaml $manifest and VrModTagger.csproj $project must all match."
           }
 
+      - name: Restore (locked package versions)
+        run: dotnet restore tests/VrModTagger.Tests --locked-mode
+
       - name: Test
-        run: dotnet test tests/VrModTagger.Tests -c Release
+        run: dotnet test tests/VrModTagger.Tests -c Release --no-restore
 
       - name: Pack
         shell: pwsh
@@ -40,12 +50,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          $tag = '${{ github.ref_name }}'
-          $version = $tag.TrimStart('v')
+          $version = $env:TAG.TrimStart('v')
+          $pext = Get-ChildItem dist/*.pext | Select-Object -First 1
+          $sha256 = (Get-FileHash $pext.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
           $flags = @('--draft', '--title', "VR Mod Tagger $version", '--notes-file', 'release-notes.md')
           if ($version.StartsWith('0.')) { $flags += '--prerelease' }
 
-          # Release notes: this version's CHANGELOG section plus install steps.
+          # Release notes: this version's CHANGELOG section, install steps and the file's checksum.
           $changelog = Get-Content CHANGELOG.md -Raw -Encoding utf8
           $section = [regex]::Match($changelog, "(?ms)^## $([regex]::Escape($version))\b.*?(?=^## |\z)").Value
           @"
@@ -54,6 +65,13 @@ jobs:
           ### Install
           Download the ``.pext`` below and drag it onto Playnite (or double-click it), then restart Playnite.
           Back up your library before the first run. Every run asks first and can be undone from Extensions > VR Mod Tagger.
+
+          ### Verify the download
+          SHA-256 of ``$($pext.Name)``:
+          ``````
+          $sha256
+          ``````
+          In PowerShell: ``Get-FileHash .\$($pext.Name)``
           "@ | Set-Content release-notes.md -Encoding utf8
 
-          gh release create $tag (Get-ChildItem dist/*.pext).FullName @flags
+          gh release create $env:TAG $pext.FullName @flags

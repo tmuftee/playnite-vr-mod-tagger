@@ -52,18 +52,18 @@ namespace VrModTagger.Sources
     {
         private static readonly Regex anchorRegex = new Regex(
             @"<a\s[^>]*href=""(?<href>[^""]*)""[^>]*>(?<text>.*?)</a>",
-            RegexOptions.Singleline | RegexOptions.IgnoreCase);
+            RegexOptions.Singleline | RegexOptions.IgnoreCase, SourceHttp.RegexTimeout);
 
         private static readonly Regex steamAppRegex = new Regex(
             @"store\.steampowered\.com/(?:agecheck/)?app/(?<id>\d+)(?:/(?<slug>[^/?#""]+))?",
-            RegexOptions.IgnoreCase);
+            RegexOptions.IgnoreCase, SourceHttp.RegexTimeout);
 
-        private static readonly Regex tagRegex = new Regex(@"<[^>]+>", RegexOptions.Singleline);
+        private static readonly Regex tagRegex = new Regex(@"<[^>]+>", RegexOptions.Singleline, SourceHttp.RegexTimeout);
 
         // A sentence ends at . ! ? followed by a capital letter, so abbreviations like "R.D.R. on Steam" stay whole.
-        private static readonly Regex sentenceBreakRegex = new Regex(@"(?<=[.!?])\s+(?=[A-Z])");
+        private static readonly Regex sentenceBreakRegex = new Regex(@"(?<=[.!?])\s+(?=[A-Z])", RegexOptions.None, SourceHttp.RegexTimeout);
 
-        private static readonly Regex buyNameRegex = new Regex(@"\bbuy\s+(?<name>.+?)\s+on\s+steam\b", RegexOptions.IgnoreCase);
+        private static readonly Regex buyNameRegex = new Regex(@"\bbuy\s+(?<name>.+?)\s+on\s+steam\b", RegexOptions.IgnoreCase, SourceHttp.RegexTimeout);
 
         // Anchor and "Buy ... on Steam" texts that don't name a game.
         private static readonly HashSet<string> genericAnchorTexts = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
@@ -205,7 +205,7 @@ namespace VrModTagger.Sources
         private static string CleanText(string html)
         {
             var text = WebUtility.HtmlDecode(tagRegex.Replace(html, " "));
-            return Regex.Replace(text, @"\s+", " ").Trim();
+            return Regex.Replace(text, @"\s+", " ", RegexOptions.None, SourceHttp.RegexTimeout).Trim();
         }
 
         [DataContract]

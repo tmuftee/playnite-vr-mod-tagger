@@ -143,8 +143,10 @@ namespace VrModTagger.Applying
             }
 
             // Links: one per distinct mod page URL.
+            // Links come from other sites: anything that isn't an https link to a known source is dropped,
+            // and a plugin link already in the library that fails the check is removed below.
             var wantedLinks = entries
-                .Where(e => !string.IsNullOrWhiteSpace(e.Url))
+                .Where(e => LinkSafety.IsAllowed(e.Url))
                 .GroupBy(e => e.Url, StringComparer.OrdinalIgnoreCase)
                 .Select(g => new LinkInfo { Name = LinkName(g.First()), Url = g.Key })
                 .ToList();
@@ -164,13 +166,14 @@ namespace VrModTagger.Applying
             }
 
             var canRemoveLinks = excluded || options.RemoveStaleTags;
-            if (canRemoveLinks)
-            {
-                change.RemoveLinks.AddRange(game.Links.Where(l =>
-                    IsOwnedLink(l)
-                    && !wantedUrls.Contains(l.Url ?? "")
-                    && (excluded || !failedSources.Contains(LinkSource(l)))));
-            }
+            change.RemoveLinks.AddRange(game.Links.Where(l =>
+                IsOwnedLink(l)
+                && !change.RemoveLinks.Contains(l)
+                && !wantedUrls.Contains(l.Url ?? "")
+                && (
+                    // An unsafe link carrying the plugin's name always goes, whatever the settings.
+                    !LinkSafety.IsAllowed(l.Url)
+                    || (canRemoveLinks && (excluded || !failedSources.Contains(LinkSource(l)))))));
 
             return change;
         }

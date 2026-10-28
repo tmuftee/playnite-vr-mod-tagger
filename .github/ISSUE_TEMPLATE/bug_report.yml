@@ -39,5 +39,5 @@ body:
     id: log
     attributes:
       label: Log
-      description: The lines mentioning VR Mod Tagger from %AppData%\Playnite\extensions.log (or the Playnite folder for portable installs).
+      description: The lines mentioning VR Mod Tagger from %AppData%\Playnite\extensions.log (or the Playnite folder for portable installs). Logs can contain your Windows user name in file paths; remove anything you don't want to share. Never paste your GitHub token or settings file.
       render: text

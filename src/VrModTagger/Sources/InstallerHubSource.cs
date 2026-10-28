@@ -77,25 +77,25 @@ namespace VrModTagger.Sources
         // Steam AppIDs of tools rather than games: SteamVR and Steamworks Common Redistributables.
         private static readonly HashSet<uint> ignoredAppIds = new HashSet<uint> { 250820, 228980 };
 
-        private static readonly Regex scriptPathRegex = new Regex(@"^Core/(?<folder>[^/]+)/\k<folder>-core\.ps1$", RegexOptions.IgnoreCase);
-        private static readonly Regex appIdLineRegex = new Regex(@"app_?id", RegexOptions.IgnoreCase);
-        private static readonly Regex quotedNumberRegex = new Regex(@"['""](?<id>\d{3,7})['""]");
-        private static readonly Regex bareAppIdRegex = new Regex(@"app_?id\s*[:=]?\s*(?<id>\d{3,7})\b", RegexOptions.IgnoreCase);
-        private static readonly Regex appManifestRegex = new Regex(@"appmanifest_(?<id>\d{3,7})\b", RegexOptions.IgnoreCase);
+        private static readonly Regex scriptPathRegex = new Regex(@"^Core/(?<folder>[^/]+)/\k<folder>-core\.ps1$", RegexOptions.IgnoreCase, SourceHttp.RegexTimeout);
+        private static readonly Regex appIdLineRegex = new Regex(@"app_?id", RegexOptions.IgnoreCase, SourceHttp.RegexTimeout);
+        private static readonly Regex quotedNumberRegex = new Regex(@"['""](?<id>\d{3,7})['""]", RegexOptions.None, SourceHttp.RegexTimeout);
+        private static readonly Regex bareAppIdRegex = new Regex(@"app_?id\s*[:=]?\s*(?<id>\d{3,7})\b", RegexOptions.IgnoreCase, SourceHttp.RegexTimeout);
+        private static readonly Regex appManifestRegex = new Regex(@"appmanifest_(?<id>\d{3,7})\b", RegexOptions.IgnoreCase, SourceHttp.RegexTimeout);
 
         // In order of preference.
         private static readonly Regex[] titleRegexes =
         {
-            new Regex(@"WindowTitle\s*=\s*(?<q>['""])(?<title>.+?)\k<q>", RegexOptions.IgnoreCase),
-            new Regex(@"-GameTitle\s+(?<q>['""])(?<title>.+?)\k<q>", RegexOptions.IgnoreCase),
-            new Regex(@"-GameName\s+(?<q>['""])(?<title>.+?)\k<q>", RegexOptions.IgnoreCase),
-            new Regex(@"\$GAME_NAME\s*=\s*(?<q>['""])(?<title>.+?)\k<q>", RegexOptions.IgnoreCase),
-            new Regex(@"-Title\s+(?<q>['""])(?<title>.+?)\k<q>", RegexOptions.IgnoreCase)
+            new Regex(@"WindowTitle\s*=\s*(?<q>['""])(?<title>.+?)\k<q>", RegexOptions.IgnoreCase, SourceHttp.RegexTimeout),
+            new Regex(@"-GameTitle\s+(?<q>['""])(?<title>.+?)\k<q>", RegexOptions.IgnoreCase, SourceHttp.RegexTimeout),
+            new Regex(@"-GameName\s+(?<q>['""])(?<title>.+?)\k<q>", RegexOptions.IgnoreCase, SourceHttp.RegexTimeout),
+            new Regex(@"\$GAME_NAME\s*=\s*(?<q>['""])(?<title>.+?)\k<q>", RegexOptions.IgnoreCase, SourceHttp.RegexTimeout),
+            new Regex(@"-Title\s+(?<q>['""])(?<title>.+?)\k<q>", RegexOptions.IgnoreCase, SourceHttp.RegexTimeout)
         };
 
-        private static readonly Regex installerSuffixRegex = new Regex(@"\s+(Mod\s+)?Installer\s*$", RegexOptions.IgnoreCase);
-        private static readonly Regex steamFolderRegex = new Regex(@"-SteamFolderNames\s*@\((?<names>[^)]*)\)", RegexOptions.IgnoreCase);
-        private static readonly Regex quotedStringRegex = new Regex(@"(?<q>['""])(?<value>.+?)\k<q>");
+        private static readonly Regex installerSuffixRegex = new Regex(@"\s+(Mod\s+)?Installer\s*$", RegexOptions.IgnoreCase, SourceHttp.RegexTimeout);
+        private static readonly Regex steamFolderRegex = new Regex(@"-SteamFolderNames\s*@\((?<names>[^)]*)\)", RegexOptions.IgnoreCase, SourceHttp.RegexTimeout);
+        private static readonly Regex quotedStringRegex = new Regex(@"(?<q>['""])(?<value>.+?)\k<q>", RegexOptions.None, SourceHttp.RegexTimeout);
 
         public static InstallerHubTree ParseTree(string json)
         {
@@ -271,7 +271,7 @@ namespace VrModTagger.Sources
         /// <summary>"AlienIsolationVR" -> "Alien Isolation VR".</summary>
         public static string TitleFromFolder(string folder)
         {
-            var spaced = Regex.Replace(folder, @"(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|(?<=[A-Za-z])(?=\d)", " ");
+            var spaced = Regex.Replace(folder, @"(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|(?<=[A-Za-z])(?=\d)", " ", RegexOptions.None, SourceHttp.RegexTimeout);
             return spaced.Trim();
         }
 

@@ -4,6 +4,8 @@
     <TargetFramework>net462</TargetFramework>
     <UseWPF>true</UseWPF>
     <LangVersion>latest</LangVersion>
+    <!-- packages.lock.json pins exact package versions; CI restores in locked mode. -->
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <RootNamespace>VrModTagger</RootNamespace>
     <AssemblyName>VrModTagger</AssemblyName>
     <Version>0.1.0</Version>

@@ -19,11 +19,21 @@ namespace VrModTagger.Sources
         public static readonly string UserAgent =
             $"VrModTagger/{typeof(SourceHttp).Assembly.GetName().Version.ToString(3)} (Playnite add-on; +{RepoUrl})";
 
+        /// <summary>
+        /// Limit for every regex run on downloaded text, so a malformed or hostile page can't hang Playnite.
+        /// A timeout fails that source for the run (its saved list is used instead).
+        /// </summary>
+        public static readonly TimeSpan RegexTimeout = TimeSpan.FromSeconds(5);
+
+        // The largest page today is about 2.5 MB; anything far bigger is not a page we expect.
+        private const long MaxResponseBytes = 32L * 1024 * 1024;
+
         private static readonly Lazy<HttpClient> client = new Lazy<HttpClient>(() =>
         {
-            // .NET Framework 4.6.2 doesn't enable TLS 1.2 by default.
+            // .NET Framework 4.6.2 doesn't enable TLS 1.2 by default. This only adds 1.2; nothing is turned off,
+            // and certificate checks are left to Windows.
             ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
-            var http = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };
+            var http = new HttpClient { Timeout = TimeSpan.FromSeconds(30), MaxResponseContentBufferSize = MaxResponseBytes };
             http.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
             return http;
         });
@@ -36,6 +46,17 @@ namespace VrModTagger.Sources
             IDictionary<string, string> headers = null,
             int attempts = 3)
         {
+            if (headers != null && headers.Keys.Any(k => string.Equals(k, "Authorization", StringComparison.OrdinalIgnoreCase)))
+            {
+                // The only credential the add-on has is the optional GitHub token; it must never go anywhere else.
+                // (.NET Framework also drops Authorization when following a redirect.)
+                var uri = new Uri(url);
+                if (uri.Scheme != Uri.UriSchemeHttps || !string.Equals(uri.Host, "api.github.com", StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new InvalidOperationException("Credentials may only be sent to https://api.github.com.");
+                }
+            }
+
             for (var attempt = 1; ; attempt++)
             {
                 cancellationToken.ThrowIfCancellationRequested();

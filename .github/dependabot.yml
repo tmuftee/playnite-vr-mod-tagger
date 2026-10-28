@@ -1,0 +1,11 @@
+# Proposes updates for the pinned GitHub actions and NuGet packages, including security fixes.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+  - package-ecosystem: nuget
+    directories: [/src/VrModTagger, /tests/VrModTagger.Tests]
+    schedule:
+      interval: monthly

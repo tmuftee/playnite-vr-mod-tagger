@@ -53,8 +53,10 @@
                        Text="Lists newer than this are reused instead of downloaded again. Use &quot;Refresh source data&quot; in the menu to fetch now."/>
             <DockPanel Margin="0,2">
                 <TextBlock Text="GitHub token (optional):" Width="160" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Settings.GitHubToken}"/>
+                <PasswordBox x:Name="GitHubTokenBox" PasswordChanged="GitHubTokenBox_PasswordChanged"/>
             </DockPanel>
+            <TextBlock TextWrapping="Wrap" Margin="0,2" Opacity="0.7"
+                       Text="Only needed if GitHub rate-limits you. It is sent only to api.github.com and stored unencrypted in this add-on's settings file, so use a fine-grained token with no permissions (public data needs none)."/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

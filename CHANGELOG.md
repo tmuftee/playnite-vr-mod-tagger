@@ -14,3 +14,4 @@ First beta.
 - Optional similar-title matching with a review window.
 - Game right-click menu: check selected games, exclude or include them.
 - Optional automatic update after each library update, using saved lists only.
+- Treats the source sites as untrusted: only https links to the sources' own sites are added to games, downloads are size-limited, parsing has time limits, and the GitHub token can only be sent to api.github.com.

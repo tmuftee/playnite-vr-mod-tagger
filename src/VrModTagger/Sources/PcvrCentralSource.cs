@@ -75,7 +75,7 @@ namespace VrModTagger.Sources
         // Next.js streams its page data as JS string literals: self.__next_f.push([1,"..."])
         private static readonly Regex flightChunkRegex = new Regex(
             @"self\.__next_f\.push\(\[1,(?<chunk>""(?:[^""\\]|\\.)*"")\]\)",
-            RegexOptions.Singleline);
+            RegexOptions.Singleline, SourceHttp.RegexTimeout);
 
         private const string GamesKey = "\"games\":[";
 
@@ -95,7 +95,9 @@ namespace VrModTagger.Sources
                 throw new FormatException("PCVR Central game catalog was not found in the page data; the site layout may have changed.");
             }
 
-            var arrayJson = ExtractJsonArray(data, start + GamesKey.Length - 1);
+            // JavaScriptSerializer treats a "__type" key as a type name. With no type resolver it can't create
+            // types, but the key would still make parsing fail, so it's renamed to plain data first.
+            var arrayJson = ExtractJsonArray(data, start + GamesKey.Length - 1).Replace("\"__type\"", "\"_type_\"");
             var items = (object[])serializer.DeserializeObject(arrayJson);
             return items.OfType<Dictionary<string, object>>().Select(ToGame).Where(g => g.Slug != null).ToList();
         }

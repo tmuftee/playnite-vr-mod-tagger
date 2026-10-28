@@ -32,13 +32,13 @@ namespace VrModTagger.Sources
     {
         private static readonly Regex tableRegex = new Regex(
             @"<table[^>]*class=""[^""]*game-list-table[^""]*""[^>]*>(?<body>.*?)</table>",
-            RegexOptions.Singleline | RegexOptions.IgnoreCase);
+            RegexOptions.Singleline | RegexOptions.IgnoreCase, SourceHttp.RegexTimeout);
 
         private static readonly Regex rowRegex = new Regex(
             @"<tr[^>]*>\s*<td[^>]*>(?<title>.*?)</td>\s*<td[^>]*>(?<platforms>.*?)</td>\s*</tr>",
-            RegexOptions.Singleline | RegexOptions.IgnoreCase);
+            RegexOptions.Singleline | RegexOptions.IgnoreCase, SourceHttp.RegexTimeout);
 
-        private static readonly Regex tagRegex = new Regex(@"<[^>]+>", RegexOptions.Singleline);
+        private static readonly Regex tagRegex = new Regex(@"<[^>]+>", RegexOptions.Singleline, SourceHttp.RegexTimeout);
 
         // Platform words that mean the mod runs on PC, so the row isn't Quest-only.
         private static readonly string[] pcPlatformWords =
@@ -133,7 +133,7 @@ namespace VrModTagger.Sources
         private static string CleanText(string html)
         {
             var text = WebUtility.HtmlDecode(tagRegex.Replace(html, " "));
-            return Regex.Replace(text, @"\s+", " ").Trim();
+            return Regex.Replace(text, @"\s+", " ", RegexOptions.None, SourceHttp.RegexTimeout).Trim();
         }
     }
 }
