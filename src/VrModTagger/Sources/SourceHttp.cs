@@ -13,7 +13,11 @@ namespace VrModTagger.Sources
     /// </summary>
     public static class SourceHttp
     {
-        public const string UserAgent = "VrModTagger/0.1 (Playnite plugin)";
+        public const string RepoUrl = "https://github.com/tmuftee/playnite-vr-mod-tagger";
+
+        /// <summary>Names the add-on and where to reach its author, so site owners can tell who is fetching their pages.</summary>
+        public static readonly string UserAgent =
+            $"VrModTagger/{typeof(SourceHttp).Assembly.GetName().Version.ToString(3)} (Playnite add-on; +{RepoUrl})";
 
         private static readonly Lazy<HttpClient> client = new Lazy<HttpClient>(() =>
         {

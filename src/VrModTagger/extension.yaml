@@ -6,6 +6,8 @@ Module: VrModTagger.dll
 Type: GenericPlugin
 Icon: icon.png
 Links:
+  - Name: Source code and issues
+    Url: https://github.com/tmuftee/playnite-vr-mod-tagger
   - Name: PCVR Central
     Url: https://pcvrcentral.com/
   - Name: PCVR Gamer

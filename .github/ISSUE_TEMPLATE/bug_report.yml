@@ -1,0 +1,43 @@
+name: Bug report
+description: Something went wrong, or a game was tagged wrongly or not at all.
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Add-on version
+      description: Shown in Playnite's Add-ons window, under Installed → Generic.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: playnite
+    attributes:
+      label: Playnite version
+      placeholder: "10.x"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem?
+      options:
+        - A game got a VR tag it shouldn't have
+        - A game with a VR mod wasn't tagged
+        - An error or crash
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What happened?
+      description: For tagging problems, give the game's name exactly as Playnite shows it, where it's from (Steam, GOG, Epic...), and the mod page you expected or got.
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: The lines mentioning VR Mod Tagger from %AppData%\Playnite\extensions.log (or the Playnite folder for portable installs).
+      render: text

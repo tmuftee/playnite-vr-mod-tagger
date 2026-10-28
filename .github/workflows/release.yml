@@ -1,0 +1,59 @@
+# Builds the .pext for a version tag (v1.2.3) and attaches it to a draft release.
+# The draft is published by hand after checking it. 0.x versions are marked as pre-releases.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Check the tag matches the version
+        shell: pwsh
+        run: |
+          $tag = '${{ github.ref_name }}'.TrimStart('v')
+          $manifest = (Select-String -Path src/VrModTagger/extension.yaml -Pattern '^Version:\s*(.+)$').Matches[0].Groups[1].Value.Trim()
+          $project = ([xml](Get-Content src/VrModTagger/VrModTagger.csproj)).Project.PropertyGroup.Version | Where-Object { $_ } | Select-Object -First 1
+          if ($tag -ne $manifest -or $tag -ne $project) {
+            throw "Tag $tag, extension.yaml $manifest and VrModTagger.csproj $project must all match."
+          }
+
+      - name: Test
+        run: dotnet test tests/VrModTagger.Tests -c Release
+
+      - name: Pack
+        shell: pwsh
+        run: ./pack.ps1
+
+      - name: Create draft release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = '${{ github.ref_name }}'
+          $version = $tag.TrimStart('v')
+          $flags = @('--draft', '--title', "VR Mod Tagger $version", '--notes-file', 'release-notes.md')
+          if ($version.StartsWith('0.')) { $flags += '--prerelease' }
+
+          # Release notes: this version's CHANGELOG section plus install steps.
+          $changelog = Get-Content CHANGELOG.md -Raw -Encoding utf8
+          $section = [regex]::Match($changelog, "(?ms)^## $([regex]::Escape($version))\b.*?(?=^## |\z)").Value
+          @"
+          $section
+
+          ### Install
+          Download the ``.pext`` below and drag it onto Playnite (or double-click it), then restart Playnite.
+          Back up your library before the first run. Every run asks first and can be undone from Extensions > VR Mod Tagger.
+          "@ | Set-Content release-notes.md -Encoding utf8
+
+          gh release create $tag (Get-ChildItem dist/*.pext).FullName @flags
