@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.1 (beta) — unreleased
+## 0.1.1 (beta) — 2026-10-28
 
 - Fixed: the optional Meta Quest tag now marks every game with a standalone Quest version. Before, it only marked games whose mods were all Quest-only, so games with both a PC mod and a Quest port (Half-Life with Lambda1VR, and 13 others on PCVR Central) were missed.
 - Fixed: mod titles that number the first game ("Half Life 1", "Quake 1") now match the store name ("Half-Life", "Quake").
