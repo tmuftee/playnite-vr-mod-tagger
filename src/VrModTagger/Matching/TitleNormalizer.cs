@@ -64,12 +64,32 @@ namespace VrModTagger.Matching
         // Removed from the end of mod titles only: "Dishonored VR", "Half-Life 2 Quest".
         private static readonly HashSet<string> modSuffixWords = new HashSet<string> { "vr", "pcvr", "xr", "quest", "vro" };
 
+        /// <summary>
+        /// Every key a mod title should be found under: as written, without mod words, and without a trailing "1".
+        /// Mod sites write "Half Life 1" or "Quake 1" for the first game, which stores call "Half-Life" and "Quake",
+        /// while "Battlefield 1 VR" must still find "Battlefield 1".
+        /// </summary>
+        public static List<NormalizedTitle> ModTitleKeys(string title)
+        {
+            return new[]
+                {
+                    Normalize(title, isModTitle: false),
+                    Normalize(title, isModTitle: true),
+                    Normalize(title, isModTitle: true, dropFirstGameNumber: true)
+                }
+                .Where(k => k.Key.Length > 0)
+                .GroupBy(k => k.Key)
+                .Select(g => g.First())
+                .ToList();
+        }
+
         /// <param name="title">The title to normalize.</param>
         /// <param name="isModTitle">
         /// True for titles from VR mod sources, which carry extra words like "VR", "(motion controls)" or "— ModName".
         /// False for Playnite game names and native VR games, where "VR" is part of the real name ("Fallout 4 VR").
         /// </param>
-        public static NormalizedTitle Normalize(string title, bool isModTitle)
+        /// <param name="dropFirstGameNumber">Mod titles only: also drop a trailing "1" ("Half Life 1" -> "halflife").</param>
+        public static NormalizedTitle Normalize(string title, bool isModTitle, bool dropFirstGameNumber = false)
         {
             var result = new NormalizedTitle { Key = "" };
             if (string.IsNullOrWhiteSpace(title))
@@ -118,6 +138,11 @@ namespace VrModTagger.Matching
                         break;
                     }
 
+                    withoutModWords.RemoveAt(withoutModWords.Count - 1);
+                }
+
+                if (dropFirstGameNumber && withoutModWords.Count > 1 && withoutModWords[withoutModWords.Count - 1] == "1")
+                {
                     withoutModWords.RemoveAt(withoutModWords.Count - 1);
                 }
 

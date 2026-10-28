@@ -123,7 +123,8 @@ namespace VrModTagger.Applying
             {
                 wantedTags.Add(options.NativeVrTagName);
             }
-            if (options.AddQuestTag && modEntries.Any(e => e.QuestOnly))
+            // Any standalone Quest version counts, not just games whose only mods are for Quest.
+            if (options.AddQuestTag && modEntries.Any(e => e.HasQuestPort || e.QuestOnly))
             {
                 wantedTags.Add(options.QuestTagName);
             }

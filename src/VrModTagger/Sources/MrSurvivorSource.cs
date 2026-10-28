@@ -112,8 +112,8 @@ namespace VrModTagger.Sources
                     entry.Platforms.Add(platform);
                 }
 
-                entry.QuestOnly = entry.Platforms.Any(p => p.IndexOf("quest", StringComparison.OrdinalIgnoreCase) >= 0)
-                    && !entry.Platforms.Any(IsPcPlatform);
+                entry.HasQuestPort = entry.Platforms.Any(p => p.IndexOf("quest", StringComparison.OrdinalIgnoreCase) >= 0);
+                entry.QuestOnly = entry.HasQuestPort && !entry.Platforms.Any(IsPcPlatform);
                 entries.Add(entry);
             }
 

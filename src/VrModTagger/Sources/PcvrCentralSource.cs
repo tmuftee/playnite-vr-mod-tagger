@@ -139,6 +139,9 @@ namespace VrModTagger.Sources
                     entry.SteamAppIds.Add(appId.Value);
                 }
 
+                // At least one mod runs standalone on Quest (often next to a PC mod, as with Half-Life and Lambda1VR).
+                entry.HasQuestPort = entry.Platforms.Contains("quest");
+
                 // Mods exist only for standalone headsets, e.g. Quest/Pico ports.
                 entry.QuestOnly = mods.Count > 0 && !nativeVr && !entry.Platforms.Contains("pcvr");
                 entries.Add(entry);

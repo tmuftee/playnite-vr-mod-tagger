@@ -82,6 +82,48 @@ namespace VrModTagger.Tests
         }
 
         [Fact]
+        public void GameWithPcModAndQuestPortHasQuestPort()
+        {
+            // Half-Life as listed on 2026-10-28.
+            var halfLife = new PcvrCentralGame
+            {
+                Slug = "half-life", Title = "Half-Life", SteamAppId = 70, NativeVr = "none",
+                Mods =
+                {
+                    new PcvrCentralMod { Name = "Half-Life VR Mod", Author = "maxmakesmods", Status = "active", Platforms = { "pcvr" } },
+                    new PcvrCentralMod { Name = "Lambda1VR", Author = "Team Beef", Status = "active", Platforms = { "quest", "pico" } }
+                }
+            };
+
+            var entry = Assert.Single(PcvrCentralParser.ToEntries(new[] { halfLife }));
+            Assert.True(entry.HasQuestPort);
+            Assert.False(entry.QuestOnly);
+        }
+
+        [Fact]
+        public void PcOnlyGameHasNoQuestPort()
+        {
+            Assert.False(Entry("cyberpunk-2077").HasQuestPort);
+        }
+
+        [Fact]
+        public void QuestOnlyGamesHaveQuestPort()
+        {
+            Assert.All(entries.Where(e => e.QuestOnly), e => Assert.True(e.HasQuestPort));
+        }
+
+        [Fact]
+        public void PicoOnlyModIsNotAQuestPort()
+        {
+            var game = new PcvrCentralGame
+            {
+                Slug = "pico-only", Title = "Pico Only", NativeVr = "none",
+                Mods = { new PcvrCentralMod { Name = "Port", Status = "active", Platforms = { "pico" } } }
+            };
+            Assert.False(Assert.Single(PcvrCentralParser.ToEntries(new[] { game })).HasQuestPort);
+        }
+
+        [Fact]
         public void LeavesOutBrokenMods()
         {
             var games = new[]

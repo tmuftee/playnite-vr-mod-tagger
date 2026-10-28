@@ -17,7 +17,7 @@ A [Playnite](https://playnite.link/) add-on that finds which games in your libra
 - Adds tags:
   - **VR Mod**: a VR mod exists for the game
   - **Native VR**: the game has VR built in, so no mod is needed
-  - Optional: **VR Mod: Meta Quest** for Quest-only mods, and one tag per source
+  - Optional: **VR Mod: Meta Quest** when a standalone Quest version exists (for example Half-Life, which has both a PC mod and the Lambda1VR Quest port), and one tag per source
 - Adds links such as `VR Mod (PCVR Gamer)`, `VR Mod (MrSurvivor, Meta Quest)` or `Native VR (PCVR Central)`.
 
 It only ever removes its own tags and links. Other tags, and links you added yourself, are never touched.

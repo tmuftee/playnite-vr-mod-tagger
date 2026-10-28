@@ -79,11 +79,9 @@ namespace VrModTagger.Matching
                 var nativeOnly = entry.NativeVr && entry.ModNames.Count == 0;
                 foreach (var title in new[] { entry.Title }.Concat(entry.AlternateTitles))
                 {
-                    var keys = new List<NormalizedTitle> { TitleNormalizer.Normalize(title, isModTitle: false) };
-                    if (!nativeOnly)
-                    {
-                        keys.Add(TitleNormalizer.Normalize(title, isModTitle: true));
-                    }
+                    var keys = nativeOnly
+                        ? new List<NormalizedTitle> { TitleNormalizer.Normalize(title, isModTitle: false) }
+                        : TitleNormalizer.ModTitleKeys(title);
 
                     foreach (var key in keys.Where(k => k.Key.Length > 0))
                     {

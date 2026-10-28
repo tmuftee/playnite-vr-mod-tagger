@@ -12,7 +12,8 @@ namespace VrModTagger.Caching
     public class CachedSource
     {
         /// <summary>Bump when parsing changes, so lists saved by an older plugin version are fetched again.</summary>
-        public const int CurrentFormat = 1;
+        // 2: entries carry HasQuestPort.
+        public const int CurrentFormat = 2;
 
         public int Format { get; set; } = CurrentFormat;
         public string CacheKey { get; set; }

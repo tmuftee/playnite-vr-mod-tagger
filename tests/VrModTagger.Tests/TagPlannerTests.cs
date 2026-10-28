@@ -101,6 +101,30 @@ namespace VrModTagger.Tests
         }
 
         [Fact]
+        public void QuestTagMarksGameWithPcModAndQuestPort()
+        {
+            // Half-Life on PCVR Central: "Half-Life VR Mod" for PC and the Lambda1VR Quest port.
+            var game = Game();
+            var halfLife = Mod("PCVR Central", "https://pcvrcentral.com/games/half-life");
+            halfLife.HasQuestPort = true;
+
+            var withQuestTag = PlanOne(game, Matches(game, halfLife), new TaggingOptions { AddQuestTag = true });
+            Assert.Equal(new[] { "VR Mod", "VR Mod: Meta Quest" }, withQuestTag.AddTags);
+            // The link isn't labelled Meta Quest: the page also has a PC mod.
+            Assert.Equal("VR Mod (PCVR Central)", Assert.Single(withQuestTag.AddLinks).Name);
+
+            Assert.Equal(new[] { "VR Mod" }, PlanOne(game, Matches(game, halfLife)).AddTags);
+        }
+
+        [Fact]
+        public void QuestTagIsRemovedWhenQuestPortDisappears()
+        {
+            var game = Game(new[] { "VR Mod", "VR Mod: Meta Quest" }, new[] { Link("VR Mod (PCVR Central)", "https://pcvrcentral.com/games/x") });
+            var change = PlanOne(game, Matches(game, Mod("PCVR Central", "https://pcvrcentral.com/games/x")), new TaggingOptions { AddQuestTag = true });
+            Assert.Equal(new[] { "VR Mod: Meta Quest" }, change.RemoveTags);
+        }
+
+        [Fact]
         public void PerSourceTags()
         {
             var game = Game();

@@ -23,7 +23,7 @@
                 <TextBlock Text="Native VR tag:" Width="160" VerticalAlignment="Center"/>
                 <TextBox Text="{Binding Settings.NativeVrTagName}"/>
             </DockPanel>
-            <CheckBox Content="Add a tag for Meta Quest-only mods" IsChecked="{Binding Settings.AddQuestTag}" Margin="0,6,0,2"/>
+            <CheckBox Content="Add a tag when a standalone Meta Quest version exists (even if there's also a PC mod)" IsChecked="{Binding Settings.AddQuestTag}" Margin="0,6,0,2"/>
             <DockPanel Margin="0,2" IsEnabled="{Binding Settings.AddQuestTag}">
                 <TextBlock Text="Meta Quest tag:" Width="160" VerticalAlignment="Center"/>
                 <TextBox Text="{Binding Settings.QuestTagName}"/>

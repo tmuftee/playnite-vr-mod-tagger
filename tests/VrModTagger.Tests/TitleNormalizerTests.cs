@@ -1,3 +1,4 @@
+using System.Linq;
 using VrModTagger.Matching;
 using Xunit;
 
@@ -44,6 +45,8 @@ namespace VrModTagger.Tests
         [InlineData("De Blob", "deblob")]
         // "VR" is part of real game names
         [InlineData("Fallout 4 VR", "fallout4vr")]
+        // Store names keep their numbers.
+        [InlineData("Battlefield 1", "battlefield1")]
         public void NormalizesGameNames(string title, string key)
         {
             Assert.Equal(key, TitleNormalizer.Normalize(title, isModTitle: false).Key);
@@ -68,6 +71,25 @@ namespace VrModTagger.Tests
         public void NormalizesModTitles(string title, string key)
         {
             Assert.Equal(key, TitleNormalizer.Normalize(title, isModTitle: true).Key);
+        }
+
+        [Theory]
+        [InlineData("Half Life 1", "halflife")]
+        [InlineData("Quake 1 VR", "quake")]
+        [InlineData("Half-Life I", "halflife")]
+        [InlineData("Battlefield 1 VR", "battlefield1")]
+        [InlineData("Battlefield 1 VR", "battlefield")]
+        [InlineData("Fallout 4 VR", "fallout4vr")]
+        [InlineData("Fallout 4 VR", "fallout4")]
+        public void ModTitleIsFoundUnderEachForm(string title, string key)
+        {
+            Assert.Contains(key, TitleNormalizer.ModTitleKeys(title).Select(k => k.Key));
+        }
+
+        [Fact]
+        public void LoneNumberIsKept()
+        {
+            Assert.Equal(new[] { "1" }, TitleNormalizer.ModTitleKeys("1").Select(k => k.Key));
         }
 
         [Theory]

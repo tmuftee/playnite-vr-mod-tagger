@@ -37,7 +37,15 @@ namespace VrModTagger.Tests
         [InlineData("Galaxy Quest — Super Mario Galaxy")]
         public void KeepsQuestOnlyRows(string title)
         {
-            Assert.True(entries.Single(e => e.Title == title).QuestOnly);
+            var entry = entries.Single(e => e.Title == title);
+            Assert.True(entry.QuestOnly);
+            Assert.True(entry.HasQuestPort);
+        }
+
+        [Fact]
+        public void PcRowsHaveNoQuestPort()
+        {
+            Assert.False(entries.Single(e => e.Title == "Crysis").HasQuestPort);
         }
 
         [Theory]

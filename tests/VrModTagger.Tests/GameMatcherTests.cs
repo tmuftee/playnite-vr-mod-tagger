@@ -62,6 +62,13 @@ namespace VrModTagger.Tests
         }
 
         [Fact]
+        public void FirstGameNumberedOneMatchesStoreName()
+        {
+            Assert.Single(Match(Game("Half-Life"), Mod("Half Life 1")));
+            Assert.Single(Match(Game("Battlefield 1"), Mod("Battlefield 1 VR")));
+        }
+
+        [Fact]
         public void DoesNotMatchDifferentYear()
         {
             var prey2006 = Mod("Prey (2006)");

@@ -24,8 +24,14 @@ namespace VrModTagger.Models
         /// <summary>Platforms the mod supports (MrSurvivor only).</summary>
         public List<string> Platforms { get; set; } = new List<string>();
 
-        /// <summary>The mod only exists for Meta Quest (MrSurvivor "Meta Quest" rows).</summary>
+        /// <summary>The mod only exists for Meta Quest (MrSurvivor "Meta Quest" rows). Labels the link "(…, Meta Quest)".</summary>
         public bool QuestOnly { get; set; }
+
+        /// <summary>
+        /// A standalone Meta Quest version exists, whether or not there is also a PC mod (Half-Life has both the
+        /// "Half-Life VR Mod" for PC and the Lambda1VR Quest port). Drives the optional Quest tag.
+        /// </summary>
+        public bool HasQuestPort { get; set; }
 
         /// <summary>The game has built-in VR (PCVR Central native VR list).</summary>
         public bool NativeVr { get; set; }
