@@ -1,0 +1,1106 @@
+{
+ "sha": "2259ebd9d0fd59309aa1d43e9bf1f8128a6ecb9b",
+ "truncated": false,
+ "tree": [
+  {
+   "path": "Core/7DaysVR/7DaysVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ACMirageVR/ACMirageVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ACOdysseyVR/ACOdysseyVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ACValhallaVR/ACValhallaVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/AKingdomForKeflingsVR/AKingdomForKeflingsVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/AlanWakeVR/AlanWakeVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/AlbaVR/AlbaVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/AlienIsolationVR/AlienIsolationVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/AliensPredatorVR/AliensPredatorVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/AmnesiaVR/AmnesiaVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/AnomalyGammaVR/AnomalyGammaVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/AnomalyVR/AnomalyVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/AnotherCrabsTreasureVR/AnotherCrabsTreasureVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Arma3VR/Arma3VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ArtOfRallyVR/ArtOfRallyVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ArxFatalisVR/ArxFatalisVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Ashes2063VR/Ashes2063VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/AstrodogsVR/AstrodogsVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/AwayVR/AwayVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BMSVR/BMSVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BanjoKazooieVR/BanjoKazooieVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BannerlordVR/BannerlordVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BattlefieldVR/BattlefieldVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BendyVR/BendyVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BeyondTwoSoulsVR/BeyondTwoSoulsVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BigWalkVR/BigWalkVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Bioshock2VR/Bioshock2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BioshockInfiniteVR/BioshockInfiniteVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BioshockVR/BioshockVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BlackMesaVR/BlackMesaVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BladeOfDarknessVR/BladeOfDarknessVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BloodRazeXR/BloodRazeXR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BombRushCyberfunkVR/BombRushCyberfunkVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BorderlandsGOTYVR/BorderlandsGOTYVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BreathOfTheWildVR/BreathOfTheWildVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/BrutalLegendVR/BrutalLegendVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/CallOfDuty2003VR/CallOfDuty2003VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/CallOfDuty4VR/CallOfDuty4VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/CallOfDutyWaWVR/CallOfDutyWaWVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/CallOfJuarezVR/CallOfJuarezVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/CircuitSuperstarsVR/CircuitSuperstarsVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/CloudpunkCOGVR/CloudpunkCOGVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/CloudpunkVR/CloudpunkVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ContentWarningVR/ContentWarningVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/CrueltySquadVR/CrueltySquadVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Cyberpunk2077VR/Cyberpunk2077VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DMC5VR/DMC5VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DRGVRG/DRGVRG-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DS2VR/DS2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DaggerfallUnityVR/DaggerfallUnityVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DarktideVR/DarktideVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DawnVR/DawnVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DecimateDriveVR/DecimateDriveVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DescendersVR/DescendersVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Descent2VR/Descent2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DescentVR/DescentVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DeusExHRVR/DeusExHRVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Diablo2ResurrectedVR/Diablo2ResurrectedVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DiddyKongRacingVR/DiddyKongRacingVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DinkumVR/DinkumVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DinoTraumaVR/DinoTraumaVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Dirt4VR/Dirt4VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Dishonored2VR/Dishonored2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DishonoredVR/DishonoredVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Doom2016VR/Doom2016VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Doom2VR/Doom2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Doom3BFGVR/Doom3BFGVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DoomEternalMotion/DoomEternalMotion-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DoomVR/DoomVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DredgeVR/DredgeVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DriftwoodVR/DriftwoodVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DukeNukem3DVR/DukeNukem3DVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DungeonKeeper2VR/DungeonKeeper2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/DuskHDVR/DuskHDVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/EDF6VR/EDF6VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/EchoGeneration2VR/EchoGeneration2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/EldenRingRealVR/EldenRingRealVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/EldenRingVR/EldenRingVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ElderbornVR/ElderbornVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/EnshroudedVR/EnshroudedVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/FNVVR/FNVVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/FZeroXVR/FZeroXVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Fallout3VR/Fallout3VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/FarCry2VR/FarCry2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/FearVR/FearVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/FfxivVR/FfxivVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/FlowerVR/FlowerVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ForsakenVR/ForsakenVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ForzaHorizon5VR/ForzaHorizon5VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ForzaHorizon6VR/ForzaHorizon6VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GModVR/GModVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GT2PCVR/GT2PCVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GTA4VR/GTA4VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GTAVR/GTAVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GTFOVR/GTFOVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Gen1RecompVR/Gen1RecompVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GeneralsVR/GeneralsVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GhostReconWildlandsVR/GhostReconWildlandsVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GloomhavenVR/GloomhavenVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GoldenEye007VR/GoldenEye007VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GothicIIVR/GothicIIVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GrayHorizonFH4/GrayHorizonFH4-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GrayHorizonFH5/GrayHorizonFH5-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GrayHorizonFH6/GrayHorizonFH6-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Grid2019VR/Grid2019VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/GridLegendsVR/GridLegendsVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HL2VRU/HL2VRU-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Halo3MCCVR/Halo3MCCVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HereticVR/HereticVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Hexen2VR/Hexen2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HexenVR/HexenVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HighEntropyVR/HighEntropyVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HitmanBloodMoneyVR/HitmanBloodMoneyVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HollowKnightSilksongVR/HollowKnightSilksongVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HollowKnightVR/HollowKnightVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HorizonChaseTurboVR/HorizonChaseTurboVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HotD2VR/HotD2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HouseOfTheDead2RemakeVR/HouseOfTheDead2RemakeVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HouseOfTheDeadRemakeVR/HouseOfTheDeadRemakeVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HowToFishXR/HowToFishXR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HypogeaVR/HypogeaVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/HytaleVR/HytaleVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ICanGunVR/ICanGunVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/IdolsOfAshVR/IdolsOfAshVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/IronLungVR/IronLungVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/JourneyVR/JourneyVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/JudgmentVR/JudgmentVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/KCD1VR/KCD1VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/KSPVR/KSPVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/KillingFloor2VR/KillingFloor2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/L4D2VR/L4D2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/LittleWitchNobetaVR/LittleWitchNobetaVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/LukeRossVR/LukeRossVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/LunacidVR/LunacidVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/LunisticeVR/LunisticeVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MFNVR/MFNVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MGS5VR/MGS5VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MW2CampaignRemasteredVR/MW2CampaignRemasteredVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MageArenaVR/MageArenaVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MarioKart64VR/MarioKart64VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MassEffect1VR/MassEffect1VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MassEffect2VR/MassEffect2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MassEffect3VR/MassEffect3VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MaxPayne2VR/MaxPayne2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MetalHellsingerVR/MetalHellsingerVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MetroidPrimeVR/MetroidPrimeVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MiSideVR/MiSideVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MirageFeathersVR/MirageFeathersVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MirrorsEdgeCatalystVR/MirrorsEdgeCatalystVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MirrorsEdgeVR/MirrorsEdgeVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MorosProtocolVR/MorosProtocolVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MotoRushRebornVR/MotoRushRebornVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MousePIVR/MousePIVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/MuckVR/MuckVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/NAMVR/NAMVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/NOLF1VR/NOLF1VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/NOLF2VR/NOLF2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/NewStarGPVR/NewStarGPVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/NuclearOptionVR/NuclearOptionVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Oblivion2006VR/Oblivion2006VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/OcarinaOfTimeVR/OcarinaOfTimeVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/OutboundVR/OutboundVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/OuterWildsVR/OuterWildsVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Outlast2VR/Outlast2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/OutlastVR/OutlastVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/OutwardVR/OutwardVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PEAKVR/PEAKVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PainkillerBlackVR/PainkillerBlackVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PainkillerOverdoseVR/PainkillerOverdoseVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PanzerDragoonRemakeVR/PanzerDragoonRemakeVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PaperklayVR/PaperklayVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ParanoiaPlaceVR/ParanoiaPlaceVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PathfinderKingmakerVR/PathfinderKingmakerVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PenumbraBlackPlagueVR/PenumbraBlackPlagueVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PenumbraFrameworkVR/PenumbraFrameworkVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PenumbraRequiemVR/PenumbraRequiemVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PenumbraVR/PenumbraVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PerfectDarkVR/PerfectDarkVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Portal2VR/Portal2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PowerSlaveRazeXR/PowerSlaveRazeXR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PowerWashSimulator1VR/PowerWashSimulator1VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/PowerWashSimulator2VR/PowerWashSimulator2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Prey2006VR/Prey2006VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ProjectZomboidVR/ProjectZomboidVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Quake2VR/Quake2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Quake3VR/Quake3VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/QuakeVR/QuakeVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RDRVR/RDRVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/REFrameworkVR/REFrameworkVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RaftVR/RaftVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RatchetVR/RatchetVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ReadyOrNotVR/ReadyOrNotVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RealRTCWXR/RealRTCWXR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RebelGalaxyVR/RebelGalaxyVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ReceiverVR/ReceiverVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RedFactionVR/RedFactionVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RedneckRampageVR/RedneckRampageVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RepoVR/RepoVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Retrowave2VR/Retrowave2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RichardBurnsRallyVR/RichardBurnsRallyVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RingRacersVR/RingRacersVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RoadRedemptionVR/RoadRedemptionVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RogueFlightVR/RogueFlightVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RogueTraderVR/RogueTraderVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/RustlerVR/RustlerVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SPTVR/SPTVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SaintsRowTheThirdVR/SaintsRowTheThirdVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SayonaraWildHeartsVR/SayonaraWildHeartsVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ScrapMechanicVR/ScrapMechanicVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SelacoVR/SelacoVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ShadowWarriorRazeXR/ShadowWarriorRazeXR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ShenmueVR/ShenmueVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SilentHill3VR/SilentHill3VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SilentHillVR/SilentHillVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SinEpisodesVR/SinEpisodesVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SingularityVR/SingularityVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SkateStoryVR/SkateStoryVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SlydersVR/SlydersVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SnowRunnerVR/SnowRunnerVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SomaVR/SomaVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SonicP06VR/SonicP06VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SonicRoboBlast2VR/SonicRoboBlast2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SonsVR/SonsVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SpecOpsTheLineVR/SpecOpsTheLineVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SpidyVR/SpidyVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/StarFox64VR/StarFox64VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/StarFoxEnhancedVR/StarFoxEnhancedVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/StarRacerVR/StarRacerVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/StarTruckerVR/StarTruckerVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/StarWarsEpisodeIRacerExtras/StarWarsEpisodeIRacerExtras-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/StarWarsEpisodeIRacerTracks/StarWarsEpisodeIRacerTracks-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/StarWarsEpisodeIRacerVR/StarWarsEpisodeIRacerVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/StardewValleyVR/StardewValleyVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/StarfieldVR/StarfieldVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/StreetDogBMXVR/StreetDogBMXVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/StrifeVR/StrifeVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SunriseGPVR/SunriseGPVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SuperMario3DWorldVR/SuperMario3DWorldVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SuperMario64VR/SuperMario64VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/SuperPolygonGrandPrixVR/SuperPolygonGrandPrixVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TeardownVR/TeardownVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TechtonicaVR/TechtonicaVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TheDarkModVR/TheDarkModVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TheHunterCotWVR/TheHunterCotWVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TheWitnessVR/TheWitnessVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Thief2014VR/Thief2014VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TinykinVR/TinykinVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Titanfall2VR/Titanfall2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TombRaiderVR/TombRaiderVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TormentedSoulsVR/TormentedSoulsVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TotalChaosVR/TotalChaosVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TrackManiaNationsForeverVR/TrackManiaNationsForeverVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TrackManiaUnitedForeverVR/TrackManiaUnitedForeverVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Tribes2VR/Tribes2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TromboneChampVR/TromboneChampVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TurokVR/TurokVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/TwilightPrincessVR/TwilightPrincessVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/UltrakillVR/UltrakillVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/UnmournedVR/UnmournedVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/UnrealRevivedVR/UnrealRevivedVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/VTMBVR/VTMBVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ValheimVR/ValheimVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/VampireHuntersVR/VampireHuntersVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/ViceCityVR/ViceCityVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/VirtuaCop2VR/VirtuaCop2VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/VostokVR/VostokVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/WW2GIVR/WW2GIVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/WhiteKnuckleVR/WhiteKnuckleVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/WiiCompiledVR/WiiCompiledVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Witcher3VR/Witcher3VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/WoVR/WoVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/Wolfenstein3DVR/Wolfenstein3DVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/X4VR/X4VR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/XIIIVR/XIIIVR-core.ps1",
+   "type": "blob"
+  },
+  {
+   "path": "Core/YookaLayleeVR/YookaLayleeVR-core.ps1",
+   "type": "blob"
+  }
+ ]
+}

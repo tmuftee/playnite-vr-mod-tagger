@@ -1,0 +1,60 @@
+<UserControl x:Class="VrModTagger.VrModTaggerSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="600">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            <TextBlock Text="Sources" FontWeight="Bold" Margin="0,0,0,5"/>
+            <CheckBox Content="PCVR Central" IsChecked="{Binding Settings.EnablePcvrCentral}" Margin="0,2"/>
+            <CheckBox Content="PCVR Gamer" IsChecked="{Binding Settings.EnablePcvrGamer}" Margin="0,2"/>
+            <CheckBox Content="MrSurvivor Installers" IsChecked="{Binding Settings.EnableMrSurvivor}" Margin="0,2"/>
+            <CheckBox Content="PCVR Mods Installer Hub (GitHub)" IsChecked="{Binding Settings.EnableInstallerHub}" Margin="0,2"/>
+
+            <TextBlock Text="Tags" FontWeight="Bold" Margin="0,15,0,5"/>
+            <DockPanel Margin="0,2">
+                <TextBlock Text="VR mod tag:" Width="160" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Settings.VrModTagName}"/>
+            </DockPanel>
+            <CheckBox Content="Include games with built-in (native) VR" IsChecked="{Binding Settings.IncludeNativeVr}" Margin="0,6,0,2"/>
+            <DockPanel Margin="0,2" IsEnabled="{Binding Settings.IncludeNativeVr}">
+                <TextBlock Text="Native VR tag:" Width="160" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Settings.NativeVrTagName}"/>
+            </DockPanel>
+            <CheckBox Content="Add a tag for Meta Quest-only mods" IsChecked="{Binding Settings.AddQuestTag}" Margin="0,6,0,2"/>
+            <DockPanel Margin="0,2" IsEnabled="{Binding Settings.AddQuestTag}">
+                <TextBlock Text="Meta Quest tag:" Width="160" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Settings.QuestTagName}"/>
+            </DockPanel>
+            <CheckBox Content="Add a tag per source (e.g. &quot;VR Mod: PCVR Central&quot;)" IsChecked="{Binding Settings.AddPerSourceTags}" Margin="0,6,0,2"/>
+            <CheckBox Content="Remove tags and links from games that no longer match" IsChecked="{Binding Settings.RemoveStaleTags}" Margin="0,2"/>
+
+            <TextBlock Text="Matching" FontWeight="Bold" Margin="0,15,0,5"/>
+            <CheckBox Content="Enable fuzzy title matching (matches go to review)" IsChecked="{Binding Settings.EnableFuzzyMatching}" Margin="0,2"/>
+            <DockPanel Margin="0,2" IsEnabled="{Binding Settings.EnableFuzzyMatching}">
+                <TextBlock Text="Fuzzy threshold (0-1):" Width="160" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Settings.FuzzyThreshold}" Width="80" HorizontalAlignment="Left"/>
+            </DockPanel>
+
+            <TextBlock Text="Updating" FontWeight="Bold" Margin="0,15,0,5"/>
+            <CheckBox IsChecked="{Binding Settings.AutoUpdateAfterLibraryUpdate}" Margin="0,2">
+                <TextBlock TextWrapping="Wrap" Text="Update tags automatically after each library update (uses saved lists only, no downloads; undo from the menu)"/>
+            </CheckBox>
+            <TextBlock Text="{Binding Settings.ExcludedGamesText, Mode=OneWay}" TextWrapping="Wrap" Margin="0,6,0,2"/>
+
+            <TextBlock Text="Data" FontWeight="Bold" Margin="0,15,0,5"/>
+            <DockPanel Margin="0,2">
+                <TextBlock Text="Keep saved lists (days):" Width="160" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Settings.CacheDays}" Width="80" HorizontalAlignment="Left"/>
+            </DockPanel>
+            <TextBlock TextWrapping="Wrap" Margin="0,2" Opacity="0.7"
+                       Text="Lists newer than this are reused instead of downloaded again. Use &quot;Refresh source data&quot; in the menu to fetch now."/>
+            <DockPanel Margin="0,2">
+                <TextBlock Text="GitHub token (optional):" Width="160" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Settings.GitHubToken}"/>
+            </DockPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

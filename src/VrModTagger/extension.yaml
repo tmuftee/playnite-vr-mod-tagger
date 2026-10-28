@@ -1,0 +1,16 @@
+Id: VrModTagger_00b02d59-c671-4f56-bab9-46bcd8576ef2
+Name: VR Mod Tagger
+Author: Talha Muftee
+Version: 0.1.0
+Module: VrModTagger.dll
+Type: GenericPlugin
+Icon: icon.png
+Links:
+  - Name: PCVR Central
+    Url: https://pcvrcentral.com/
+  - Name: PCVR Gamer
+    Url: https://pcvrgamer.net/
+  - Name: MrSurvivor Installers
+    Url: https://mrsurvivor-installers.com/
+  - Name: PCVR Mods Installer Hub
+    Url: https://github.com/Mr-Nlce/PCVR-Mods-Installer-Hub
