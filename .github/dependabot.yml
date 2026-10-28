@@ -9,3 +9,6 @@ updates:
     directories: [/src/VrModTagger, /tests/VrModTagger.Tests]
     schedule:
       interval: monthly
+    ignore:
+      # The SDK version sets the oldest Playnite the add-on runs on; it's raised on purpose, not automatically.
+      - dependency-name: PlayniteSDK
