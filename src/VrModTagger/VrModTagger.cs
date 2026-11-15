@@ -312,15 +312,20 @@ namespace VrModTagger
                 return;
             }
 
-            var answer = PlayniteApi.Dialogs.ShowMessage(
-                report + "\n\nChanges:\n" + DescribeChanges(changes, options) + "\n\nApply these changes?",
-                Title,
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
-            if (answer == MessageBoxResult.Yes)
+            if (ConfirmChanges(report, changes, options))
             {
                 ApplyAndReport(tagger, changes);
             }
+        }
+
+        /// <summary>Lists every game that will change and asks before applying.</summary>
+        private bool ConfirmChanges(string report, List<GameChange> changes, VrModTaggerSettings options)
+        {
+            var window = CreateListWindow($"VR Mod Tagger: review changes to {(changes.Count == 1 ? "1 game" : $"{changes.Count} games")}", 1000, 640);
+            var view = new ChangesPreviewView(report, DescribeChanges(changes, options), changes, window, OpenGame);
+            window.Content = view;
+            window.ShowDialog();
+            return view.Applied;
         }
 
         private void ApplyAndReport(LibraryTagger tagger, List<GameChange> changes)
@@ -672,22 +677,22 @@ namespace VrModTagger
             int GamesRemoving(string tag) => changes.Count(c => c.RemoveTags.Contains(tag, StringComparer.OrdinalIgnoreCase));
 
             var lines = new List<string>();
-            void Line(int count, string text)
+            void Line(int count, string singularVerb, string pluralVerb, string rest)
             {
                 if (count > 0)
                 {
-                    lines.Add($"• {count} {(count == 1 ? "game" : "games")} {text}");
+                    lines.Add($"• {ChangePreview.Games(count, singularVerb, pluralVerb)} {rest}");
                 }
             }
 
-            Line(GamesAdding(options.VrModTagName), $"get the \"{options.VrModTagName}\" tag");
-            Line(GamesAdding(options.NativeVrTagName), $"get the \"{options.NativeVrTagName}\" tag");
-            Line(GamesAdding(options.QuestTagName), $"get the \"{options.QuestTagName}\" tag");
-            Line(GamesRemoving(options.VrModTagName), $"lose the \"{options.VrModTagName}\" tag");
-            Line(GamesRemoving(options.NativeVrTagName), $"lose the \"{options.NativeVrTagName}\" tag");
-            Line(GamesRemoving(options.QuestTagName), $"lose the \"{options.QuestTagName}\" tag");
-            Line(changes.Count(c => c.AddLinks.Count > 0), $"get new links ({changes.Sum(c => c.AddLinks.Count)} in all)");
-            Line(changes.Count(c => c.RemoveLinks.Count > 0), $"lose old links ({changes.Sum(c => c.RemoveLinks.Count)} in all)");
+            Line(GamesAdding(options.VrModTagName), "gets", "get", $"the \"{options.VrModTagName}\" tag");
+            Line(GamesAdding(options.NativeVrTagName), "gets", "get", $"the \"{options.NativeVrTagName}\" tag");
+            Line(GamesAdding(options.QuestTagName), "gets", "get", $"the \"{options.QuestTagName}\" tag");
+            Line(GamesRemoving(options.VrModTagName), "loses", "lose", $"the \"{options.VrModTagName}\" tag");
+            Line(GamesRemoving(options.NativeVrTagName), "loses", "lose", $"the \"{options.NativeVrTagName}\" tag");
+            Line(GamesRemoving(options.QuestTagName), "loses", "lose", $"the \"{options.QuestTagName}\" tag");
+            Line(changes.Count(c => c.AddLinks.Count > 0), "gets", "get", $"new links ({changes.Sum(c => c.AddLinks.Count)} in all)");
+            Line(changes.Count(c => c.RemoveLinks.Count > 0), "loses", "lose", $"old links ({changes.Sum(c => c.RemoveLinks.Count)} in all)");
 
             var otherTags = changes.Sum(c => c.AddTags.Count + c.RemoveTags.Count)
                 - new[] { options.VrModTagName, options.NativeVrTagName, options.QuestTagName }.Distinct().Sum(t => GamesAdding(t) + GamesRemoving(t));
