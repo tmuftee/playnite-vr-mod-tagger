@@ -207,7 +207,8 @@ namespace VrModTagger.Applying
             return end > start ? link.Name.Substring(start, end - start).Trim() : "";
         }
 
-        private static bool IsOwnedTag(string tag, TaggingOptions options)
+        /// <summary>A tag this add-on manages: the configured tag names and "VR Mod: …" tags.</summary>
+        public static bool IsOwnedTag(string tag, TaggingOptions options)
         {
             return string.Equals(tag, options.VrModTagName, StringComparison.OrdinalIgnoreCase)
                 || string.Equals(tag, options.NativeVrTagName, StringComparison.OrdinalIgnoreCase)

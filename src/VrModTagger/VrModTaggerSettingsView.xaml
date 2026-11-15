@@ -39,6 +39,8 @@
             </DockPanel>
 
             <TextBlock Text="Updating" FontWeight="Bold" Margin="0,15,0,5"/>
+            <CheckBox Content="Show a list of newly tagged games after each update" IsChecked="{Binding Settings.ShowNewlyTaggedPopup}" Margin="0,2"/>
+            <CheckBox Content="Show the tagging history in Playnite's sidebar (takes effect after restarting Playnite)" IsChecked="{Binding Settings.ShowSidebarItem}" Margin="0,2"/>
             <CheckBox IsChecked="{Binding Settings.AutoUpdateAfterLibraryUpdate}" Margin="0,2">
                 <TextBlock TextWrapping="Wrap" Text="Update tags automatically after each library update (uses saved lists only, no downloads; undo from the menu)"/>
             </CheckBox>

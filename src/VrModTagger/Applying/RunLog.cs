@@ -14,6 +14,9 @@ namespace VrModTagger.Applying
     {
         public const string FileName = "last-run.json";
 
+        /// <summary>Links the run to its tagging history entries. Empty in logs saved by 0.1.x.</summary>
+        public Guid RunId { get; set; }
+
         public DateTime RunAt { get; set; }
         public List<GameChange> Changes { get; set; } = new List<GameChange>();
 

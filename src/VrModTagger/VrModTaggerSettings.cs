@@ -39,6 +39,12 @@ namespace VrModTagger
         public int CacheDays { get => cacheDays; set => SetValue(ref cacheDays, value); }
         public string GitHubToken { get => gitHubToken; set => SetValue(ref gitHubToken, value); }
 
+        private bool showNewlyTaggedPopup = true;
+        public bool ShowNewlyTaggedPopup { get => showNewlyTaggedPopup; set => SetValue(ref showNewlyTaggedPopup, value); }
+
+        private bool showSidebarItem = true;
+        public bool ShowSidebarItem { get => showSidebarItem; set => SetValue(ref showSidebarItem, value); }
+
         private bool autoUpdateAfterLibraryUpdate = false;
         public bool AutoUpdateAfterLibraryUpdate { get => autoUpdateAfterLibraryUpdate; set => SetValue(ref autoUpdateAfterLibraryUpdate, value); }
 

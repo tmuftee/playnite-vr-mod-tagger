@@ -37,14 +37,20 @@ Requires Playnite 10 on Windows.
 - **Update VR mod tags (all games)**: loads the lists, matches your library, shows what will change and asks before applying.
 - **Refresh source data and update tags**: the same, but downloads every list again.
 - **Review similar-title matches…**: only when similar-title matching is turned on in settings.
+- **Show tagging history…**: see below.
 - **Undo last run**: reverses exactly what the last run changed.
+
+**Keeping up with new VR mods**
+
+- **Pop-up after updates:** when an update tags games that weren't tagged before, a window lists them with their new tags and sources. This includes automatic updates after a library update. Double-click a game to jump to it in your library. You can turn the pop-up off in settings.
+- **Tagging history:** a list of which games were tagged, or had tags removed, on which date, newest first. It has a search box and an option to show untagged games. Open it from **VR Mod history** in Playnite's sidebar, from the menu, or by clicking the add-on's notification. Games that were already tagged before the history existed are listed as "Before history". Undoing a run also removes it from the history.
 
 **Right-click a game → VR Mod Tagger**
 
 - **Check for VR mods**: for the selected games.
 - **Exclude from VR mod tagging** / **Include in VR mod tagging again**
 
-Settings are in Playnite's **Add-ons** window, under **Extensions settings → Generic → VR Mod Tagger**: sources, tag names, Quest and per-source tags, removal of stale tags, similar-title matching, automatic updates after library updates, and how long downloaded lists are kept.
+Settings are in Playnite's **Add-ons** window, under **Extensions settings → Generic → VR Mod Tagger**: sources, tag names, Quest and per-source tags, removal of stale tags, similar-title matching, the newly-tagged pop-up and sidebar view, automatic updates after library updates, and how long downloaded lists are kept.
 
 ## Privacy, security and network use
 
@@ -57,6 +63,8 @@ Settings are in Playnite's **Add-ons** window, under **Extensions settings → G
 - api.github.com and raw.githubusercontent.com
 
 Requests identify themselves with a `VrModTagger/<version>` User-Agent linking to this repository. Downloaded lists are saved in the add-on's data folder and reused for 7 days by default, so most runs make no requests at all.
+
+**What it keeps.** In its own data folder: the saved lists, a record of the last run (for undo), and the tagging history (game names, dates, tags and source names). All of it stays on your PC.
 
 **What it writes.** Only tags and links on your games, and only after you confirm (or, if you turn on automatic updates, as described in settings). It removes only its own tags and links, and the last run can be undone.
 

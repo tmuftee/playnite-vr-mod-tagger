@@ -69,8 +69,38 @@ namespace VrModTagger
             yield return new MainMenuItem
             {
                 MenuSection = MenuSection,
+                Description = "Show tagging history...",
+                Action = _ => ShowHistoryWindow()
+            };
+            yield return new MainMenuItem
+            {
+                MenuSection = MenuSection,
                 Description = "Undo last run",
                 Action = _ => UndoLastRun()
+            };
+        }
+
+        public override IEnumerable<SidebarItem> GetSidebarItems()
+        {
+            if (!settings.Settings.ShowSidebarItem)
+            {
+                yield break;
+            }
+
+            yield return new SidebarItem
+            {
+                Title = "VR Mod history",
+                Type = SiderbarItemType.View,
+                Icon = new TextBlock { Text = "VR", FontWeight = FontWeights.Bold, FontSize = 14 },
+                Opened = () =>
+                {
+                    var history = LoadHistory(new LibraryTagger(PlayniteApi));
+                    var entries = history?.Entries ?? new List<HistoryEntry>();
+                    var intro = history == null
+                        ? "The tagging history couldn't be read. See extensions.log for details."
+                        : HistoryIntro;
+                    return new UserControl { Content = new HistoryView(entries, OpenGame, intro) };
+                }
             };
         }
 
@@ -300,11 +330,24 @@ namespace VrModTagger
                 return;
             }
 
+            var runId = Guid.NewGuid();
+            var runAt = DateTime.Now;
+            var options = settings.Settings;
+
+            // Loaded (and seeded with already-tagged games) before applying, so this run's tags aren't seeded too.
+            var history = LoadHistory(tagger);
+
             var applied = tagger.Apply(changes);
-            new RunLog { RunAt = DateTime.Now, Changes = applied }.Save(GetPluginUserDataPath());
+            new RunLog { RunId = runId, RunAt = runAt, Changes = applied }.Save(GetPluginUserDataPath());
             logger.Info($"Applied changes to {applied.Count} games.");
 
-            var options = settings.Settings;
+            var historyEntries = TagHistory.FromChanges(applied, runId, runAt, ToTaggingOptions(options));
+            if (history != null)
+            {
+                TagHistory.Append(history, historyEntries);
+                SaveHistory(history);
+            }
+
             var tagged = applied.Count(c => c.AddTags.Contains(options.VrModTagName, StringComparer.OrdinalIgnoreCase));
             var native = applied.Count(c => c.AddTags.Contains(options.NativeVrTagName, StringComparer.OrdinalIgnoreCase));
             var removed = applied.Count(c => c.RemoveTags.Count > 0);
@@ -316,8 +359,112 @@ namespace VrModTagger
 
             PlayniteApi.Notifications.Add(new NotificationMessage(
                 NotificationId,
-                $"VR Mod Tagger updated {applied.Count} games ({summary}). Undo it from Extensions > VR Mod Tagger.",
-                NotificationType.Info));
+                $"VR Mod Tagger updated {applied.Count} games ({summary}). Click to see the tagging history; undo it from Extensions > VR Mod Tagger.",
+                NotificationType.Info,
+                () => ShowHistoryWindow()));
+
+            var newlyTagged = historyEntries.Where(e => !e.Removed).ToList();
+            if (newlyTagged.Count > 0 && options.ShowNewlyTaggedPopup)
+            {
+                ShowNewlyTagged(newlyTagged);
+            }
+        }
+
+        /// <summary>The tagging history, recording already-tagged games the first time. Null if it can't be read or saved.</summary>
+        private TagHistoryData LoadHistory(LibraryTagger tagger)
+        {
+            try
+            {
+                var store = new HistoryStore(GetPluginUserDataPath());
+                var history = store.Load();
+                if (!history.Seeded)
+                {
+                    var seeded = TagHistory.Seed(tagger.ReadGames(), ToTaggingOptions(settings.Settings));
+                    TagHistory.Append(history, seeded);
+                    history.Seeded = true;
+                    store.Save(history);
+                    logger.Info($"Tagging history started with {seeded.Count} games that were already tagged.");
+                }
+
+                return history;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Tagging history couldn't be loaded.");
+                return null;
+            }
+        }
+
+        private void SaveHistory(TagHistoryData history)
+        {
+            try
+            {
+                new HistoryStore(GetPluginUserDataPath()).Save(history);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Tagging history couldn't be saved.");
+            }
+        }
+
+        private void ShowNewlyTagged(List<HistoryEntry> newlyTagged)
+        {
+            var intro = newlyTagged.Count == 1
+                ? "1 game was newly tagged. Double-click it to show it in your library."
+                : $"{newlyTagged.Count} games were newly tagged. Double-click one to show it in your library.";
+            var window = CreateListWindow($"VR Mod Tagger: {newlyTagged.Count} newly tagged", 760, 460);
+            var view = new HistoryView(newlyTagged, OpenGame, intro, compact: true);
+            var history = new Button { Content = "Show full history" };
+            var close = new Button { Content = "Close", IsCancel = true, IsDefault = true };
+            history.Click += (_, __) => { window.Close(); ShowHistoryWindow(); };
+            close.Click += (_, __) => window.Close();
+            view.AddButtons(history, close);
+            window.Content = view;
+            window.ShowDialog();
+        }
+
+        private void ShowHistoryWindow()
+        {
+            var history = LoadHistory(new LibraryTagger(PlayniteApi));
+            if (history == null)
+            {
+                PlayniteApi.Dialogs.ShowErrorMessage("The tagging history couldn't be read. See extensions.log for details.", Title);
+                return;
+            }
+
+            var window = CreateListWindow("VR Mod Tagger: tagging history", 980, 640);
+            var view = new HistoryView(history.Entries, OpenGame, HistoryIntro);
+            var close = new Button { Content = "Close", IsCancel = true };
+            close.Click += (_, __) => window.Close();
+            view.AddButtons(close);
+            window.Content = view;
+            window.ShowDialog();
+        }
+
+        private const string HistoryIntro =
+            "Games this add-on tagged, newest first. Double-click a game to show it in your library.";
+
+        private Window CreateListWindow(string title, double width, double height)
+        {
+            var window = PlayniteApi.Dialogs.CreateWindow(new WindowCreationOptions { ShowMinimizeButton = false, ShowMaximizeButton = true, ShowCloseButton = true });
+            window.Title = title;
+            window.Width = width;
+            window.Height = height;
+            window.Owner = PlayniteApi.Dialogs.GetCurrentAppWindow();
+            window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            return window;
+        }
+
+        private void OpenGame(Guid gameId)
+        {
+            if (PlayniteApi.Database.Games.Get(gameId) == null)
+            {
+                PlayniteApi.Dialogs.ShowMessage("That game is no longer in your library.", Title);
+                return;
+            }
+
+            PlayniteApi.MainView.SwitchToLibraryView();
+            PlayniteApi.MainView.SelectGame(gameId);
         }
 
         private bool ReviewFuzzyMatches(List<GameMatch> toReview)
@@ -423,8 +570,16 @@ namespace VrModTagger
                 return;
             }
 
-            var undone = new LibraryTagger(PlayniteApi).Apply(log.UndoChanges());
+            var tagger = new LibraryTagger(PlayniteApi);
+            var undone = tagger.Apply(log.UndoChanges());
             RunLog.Delete(dataPath);
+
+            // The undone run's changes no longer happened, so they leave the history too.
+            var history = LoadHistory(tagger);
+            if (history != null && TagHistory.RemoveRun(history, log.RunId) > 0)
+            {
+                SaveHistory(history);
+            }
             logger.Info($"Undid changes on {undone.Count} games.");
             PlayniteApi.Dialogs.ShowMessage($"Undid the changes on {undone.Count} games.", Title);
         }
