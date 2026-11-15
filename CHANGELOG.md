@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0 (beta) — unreleased
+## 0.2.0 (beta) — 2026-11-15
 
 - New: after an update that tags new games, a pop-up lists them with their new tags and sources. Double-click a game to jump to it in your library. Can be turned off in settings.
 - New: tagging history, a list of which games were tagged (or untagged) on which date, with search. Open it from **VR Mod history** in the sidebar, **Extensions > VR Mod Tagger > Show tagging history**, or by clicking the add-on's notification. Games already tagged before this version are listed as "Before history".
