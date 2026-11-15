@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.1 (beta) — unreleased
+## 0.2.1 (beta) — 2026-11-15
 
 - The confirmation before applying now lists every game that will change, with the tags it gains or loses and the sources whose links are added or removed. It used to show counts only. Double-click a game to show it in your library.
 - Fixed wording such as "1 game get the tag" → "1 game gets the tag".
